@@ -512,39 +512,7 @@ get_header();
       </div>
       <div class="reveal reveal-delay-2">
         <div class="form">
-          <form id="contactForm" novalidate>
-            <?php wp_nonce_field('wcs_contact','wcs_nonce'); ?>
-            <div class="form__row">
-              <div class="field"><label for="name">Full Name</label><input type="text" id="name" name="name" placeholder="Your name" required autocomplete="name" /></div>
-              <div class="field"><label for="org">Organisation</label><input type="text" id="org" name="org" placeholder="Company or property name" /></div>
-            </div>
-            <div class="form__row">
-              <div class="field">
-                <label for="sector">Client Type</label>
-                <select id="sector" name="sector"><option value="" disabled selected>Select type</option><option value="government">Government / Utility</option><option value="developer">Developer / Asset Owner</option><option value="hospitality">Hospitality / Commercial</option><option value="residential">Residential / Private</option><option value="other">Other</option></select>
-              </div>
-              <div class="field">
-                <label for="service">Service Interest</label>
-                <select id="service" name="service"><option value="" disabled selected>Select area</option><option value="water">Water Conservation</option><option value="environmental">Environmental Compliance</option><option value="sustainability">Sustainability Advisory</option><option value="certification">Green Building Certification</option><option value="esg">ESG / Carbon</option><option value="residential_water">Residential Water Efficiency</option><option value="not_sure">Not sure yet</option></select>
-              </div>
-            </div>
-            <div class="form__row">
-              <div class="field"><label for="email">Email Address</label><input type="email" id="email" name="email" placeholder="you@company.com" required autocomplete="email" /></div>
-              <div class="field"><label for="phone">Phone Number</label><input type="tel" id="phone" name="phone" placeholder="+971 50 000 0000" autocomplete="tel" /></div>
-            </div>
-            <div class="field"><label for="message">Message</label><textarea id="message" name="message" placeholder="Briefly describe your project, property, or requirement. No detail is too small."></textarea></div>
-            <div class="form__submit">
-              <button type="submit" class="btn btn--primary">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 2L11 13"/><path d="M22 2L15 22 11 13 2 9l20-7z"/></svg>
-                Send Message
-              </button>
-            </div>
-          </form>
-          <div class="form__success" id="formSuccess">
-            <div class="form__success-icon">✓</div>
-            <div style="font-family:var(--font-display);font-size:1.1rem;color:var(--cyan);margin-bottom:.5rem;">Message received</div>
-            <p style="font-size:.85rem;color:var(--text-3);">We'll review your submission and respond within one business day. For urgent enquiries, call <?php echo esc_html( wcs_field('contact_phone','+971 56 927 0100') ); ?>.</p>
-          </div>
+          <?php echo do_shortcode('[contact-form-7 id="aebb3a4" title="Contact Form"]'); ?>
         </div>
       </div>
     </div>

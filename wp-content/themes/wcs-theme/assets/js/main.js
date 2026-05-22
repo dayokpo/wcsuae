@@ -48,13 +48,3 @@ if (pc) {
   }
 }
 
-// CONTACT FORM
-const form = document.getElementById('contactForm');
-const success = document.getElementById('formSuccess');
-if (form && success) {
-  form.addEventListener('submit', e => {
-    e.preventDefault();
-    form.style.display = 'none';
-    success.style.display = 'block';
-  });
-}
