@@ -1,77 +1,112 @@
-# WCS WordPress Theme — Setup Guide
+# WCS WordPress Theme v2.0 — Setup Guide
 
 ## Requirements
 - WordPress 6.0+
-- **Advanced Custom Fields (ACF)** plugin — free or Pro (required for all editable content)
+- **Advanced Custom Fields (ACF)** — free version works (no Repeater needed)
 
 ---
 
 ## Installation
 
 1. Upload the `wcs-theme` folder to `/wp-content/themes/`
-2. In WordPress Admin → Appearance → Themes, activate **WCS Water Conservation Services**
+2. Go to **Appearance → Themes** and activate **WCS Water & Carbon Solutions**
 3. Install and activate the **Advanced Custom Fields** plugin
 
 ---
 
-## Creating Pages
+## Import ACF Fields
+
+1. Go to **Custom Fields → Tools**
+2. Under **Import Field Groups**, click **Choose File**
+3. Select `acf-fields.json` from inside the theme folder
+4. Click **Import File**
+
+All three field groups appear instantly with default values pre-filled:
+- **Homepage Content** — all page sections
+- **Calculator Page** — calculator labels, disclaimer, and coefficients
+- **WCS Site Settings** — global phone, email, footer text (under WCS Settings in sidebar)
+
+---
+
+## Create Pages
 
 ### Homepage
-1. Go to Pages → Add New
-2. Title: `Home`
-3. Under **Page Attributes** → Template → select **Homepage**
-4. Publish the page
-5. Go to Settings → Reading → set "Your homepage displays" to "A static page" → select `Home`
-6. All 6 content sections now appear as ACF tabs when editing the page:
-   - **Hero Section** — eyebrow, heading, sub-heading, CTA buttons, credibility strip items
-   - **Proof Numbers** — repeater for metric cards (number, label, sub-label)
-   - **About Section** — image, headings, body paragraphs, quote, pillars repeater
-   - **Projects Section** — projects repeater (image, tag, title, desc, metrics), client badges
-   - **Process Section** — steps repeater (title, desc, tags), delivery models repeater
-   - **Calculator Section** — heading, body, button text + URL
-   - **Book Assessment Section** — heading, body, contact details, closing quote
+1. Pages → Add New → Title: `Home`
+2. Page Attributes → Template → **Homepage**
+3. Publish
+4. Settings → Reading → set static front page to `Home`
+5. Edit the page — all sections appear as ACF tabs
 
-### Calculator Page
-1. Go to Pages → Add New
-2. Title: `Calculator` (slug must be `calculator`)
-3. Template → **Calculator**
-4. Publish
-5. ACF fields appear: section label, page heading, subheading, disclaimer, tariff info, coefficients note, and 5 default coefficient values (editable from WP Admin — change the "planning defaults" without touching code)
+### Calculator
+1. Pages → Add New → Title: `Calculator` (slug must be `calculator`)
+2. Page Attributes → Template → **Calculator**
+3. Publish
 
 ---
 
-## Global Site Settings
-Go to **WCS Settings** (left menu, below Dashboard) to edit:
-- Site tagline & philosophy quote (used in footer)
-- Global email, phone, address
-- Footer copyright text & location string
+## Upload Team & Project Images via ACF
+
+On the Homepage edit screen, under each tab you'll find image fields:
+- **About tab** → About Image (right card)
+- **Expertise tab** → Exp Card 1–4 images, Team 1–3 photos
+
+Upload images directly through these ACF image fields — no need to use the Media Library separately.
+
+The theme ships with the provided images as defaults inside `assets/images/`:
+- `tarsheed.jpg`, `alghadeer.jpg`, `forest.jpg` — project cards
+- `Christoph.png`, `Firas.png`, `Abhay.png` — team photos
 
 ---
 
-## Images
-Upload project and about images through the ACF image fields on each page. Default SVG placeholders are included in `assets/images/` and will display until replaced.
+## Global Settings
 
----
-
-## Contact Form
-The contact form on the homepage uses a simulated success state by default (client-side only). To connect it to a real backend:
-- Use a plugin like **WPForms**, **CF7**, or **Gravity Forms** and replace the `<form>` block in `template-homepage.php` → Contact section, OR
-- Add a server-side handler via `wp-ajax` in `functions.php`
+Go to **WCS Settings** in the left admin menu to edit:
+- Phone, Email
+- Footer tagline and philosophy quote
+- Copyright text and location string
 
 ---
 
 ## File Structure
+
 ```
 wcs-theme/
 ├── style.css                  ← Theme declaration
-├── functions.php              ← ACF registration, enqueue, helpers
+├── functions.php              ← Enqueue, helpers, ACF options page
 ├── header.php                 ← Navigation
 ├── footer.php                 ← Footer
-├── index.php                  ← Fallback template
-├── template-homepage.php      ← Homepage page template (all 6 sections)
-├── template-calculator.php    ← Calculator page template
+├── index.php                  ← Fallback
+├── template-homepage.php      ← Full homepage (Hero → Contact)
+├── template-calculator.php    ← Savings calculator
+├── acf-fields.json            ← Import this into ACF → Tools → Import
 └── assets/
-    ├── css/style.css          ← All styles (copied from original)
-    ├── js/main.js             ← Nav, scroll reveal, form (copied from original)
-    └── images/                ← Default SVG images
+    ├── css/style.css
+    ├── js/main.js
+    └── images/
+        ├── tarsheed.jpg
+        ├── alghadeer.jpg
+        ├── forest.jpg
+        ├── Christoph.png
+        ├── Firas.png
+        ├── Abhay.png
+        └── favicon.svg
 ```
+
+---
+
+## Sections on Homepage (in order)
+
+| Section | ACF Tab | Key Content |
+|---|---|---|
+| Hero | Hero | Heading, sub, buttons, stats, tags |
+| Proof Bar | Proof Bar | 4 service pillar labels |
+| About | About Section | Body, image, card, 4 pillars, awards |
+| Services | Services | 2 tabs × 9 service cards each |
+| Process | Process | 6 steps |
+| Calculator CTA | Calculator CTA | Heading, body, button |
+| Team Experience | Expertise / Experience | 4 project cards, 3 international cards |
+| Clients | Clients & Accreditations | 8 client pills |
+| Accreditations | Clients & Accreditations | 12 accreditation pills |
+| Why WCS | Why WCS | Body, 4 points, 4 sector cards |
+| Team | Team | 3 team members with photos |
+| Contact | Contact | Address, phone, email, form |
