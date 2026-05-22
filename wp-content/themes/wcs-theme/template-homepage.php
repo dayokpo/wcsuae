@@ -512,7 +512,7 @@ get_header();
       </div>
       <div class="reveal reveal-delay-2">
         <div class="form">
-          <?php echo do_shortcode('[contact-form-7 id="aebb3a4" title="Contact Form"]'); ?>
+          <?php echo do_shortcode('[contact-form-7 id="e71075c" title="Contact Us"]'); ?>
         </div>
       </div>
     </div>
